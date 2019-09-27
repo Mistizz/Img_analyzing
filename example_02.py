@@ -4,7 +4,8 @@ import cv2
 from PIL import Image
 import sys
 
-filepath = r"C:\Users\mjsadmin\Desktop\kokoro.png"
+filename = "reciept_01.png"
+filepath = r"C:\Users\mjsadmin\Desktop\{name}".format(name = filename)
 
 tools = pyocr.get_available_tools()
 
@@ -22,7 +23,7 @@ out = cv2.imread(filepath)
 for d in res:
     print(d.content)
     print(d.position)
-    cv2.rectangle(out, d.position[0], d.position[1], (0, 0, 255), 2)
+    cv2.rectangle(out, d.position[0], d.position[1], (0, 0, 255), 1)
 
 cv2.imshow("img",out)
 cv2.waitKey(0)

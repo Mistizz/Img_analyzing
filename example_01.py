@@ -4,7 +4,8 @@ import sys
 import pyocr
 import pyocr.builders
 
-filepath = r"C:\Users\mjsadmin\Desktop\kokoro.png"
+filename = "reciept_01.png"
+filepath = r"C:\Users\mjsadmin\Desktop\{name}".format(name = filename)
 
 tools = pyocr.get_available_tools()
 if len(tools) == 0:
