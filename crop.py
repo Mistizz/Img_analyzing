@@ -15,10 +15,12 @@ def crop(image): #引数は画像の相対パス
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # Grayscale に変換
     # cv2.imshow('gray', gray)
 
-    img2 = cv2.threshold(gray, 127, 255, cv2.THRESH_OTSU)[1] # 色空間を二値化
-    # cv2.imshow('img2', img2)
+    img2 = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)[1] # 色空間を二値化
+    cv2.imshow('img2', img2) 
+    cv2.waitKey(0)
 
     contours = cv2.findContours(img2, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)[0] # 輪郭を抽出
+    #print(contours)
 
     # 輪郭の座標をリストに代入していく
     x1 = [] #x座標の最小値
@@ -31,12 +33,14 @@ def crop(image): #引数は画像の相対パス
         y1.append(ret[1])
         x2.append(ret[0] + ret[2])
         y2.append(ret[1] + ret[3])
+    
 
     # 輪郭の一番外枠を切り抜き
     x1_min = min(x1)
     y1_min = min(y1)
     x2_max = max(x2)
     y2_max = max(y2)
+    print(x1_min, y1_min, x2_max, y2_max)
     cv2.rectangle(img, (x1_min, y1_min), (x2_max, y2_max), (0, 255, 0), 3)
 
     crop_img = img2[y1_min:y2_max, x1_min:x2_max]
@@ -44,6 +48,6 @@ def crop(image): #引数は画像の相対パス
 
     return img, crop_img
 
-filename = r'C:\Users\eecon\Desktop\test_04.jpg'
+filename = r'C:\Users\eecon\Desktop\degree.jpg'
 img, crop_img = crop(filename)
 cv2.imwrite(r'C:\Users\eecon\Desktop\img_crop.jpg', crop_img)
