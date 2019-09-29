@@ -52,10 +52,7 @@ if len(contours) > 0:
     print(x1_min, y1_min, x2_max, y2_max)
     cv2.rectangle(tmp, (x1_min, y1_min), (x2_max, y2_max), (0, 255, 0), 2)
 
-
-#cv2.rectangle(tmp, (x1_min, y1_min), (x2_max, y2_max), (0, 255, 0), 2)
-
-cv2.imwrite(r'C:\Users\eecon\Desktop\trim_before.jpg', tmp)
+#cv2.imwrite(r'C:\Users\eecon\Desktop\trim_before.jpg', tmp)
 img1 = tmp[y1_min: y2_max, x1_min : x2_max]
 cv2.imwrite(r'C:\Users\eecon\Desktop\trimed_.jpg', img1)
 
