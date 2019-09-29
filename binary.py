@@ -1,6 +1,6 @@
 import cv2
 
-filename = r'C:\Users\eecon\Desktop\test_03.jpg'
+filename = r'C:\Users\eecon\Desktop\test_04.jpg'
 img = cv2.imread(filename, 0) # 画像の読み込み
 
 threshold = 100 # 閾値の設定
